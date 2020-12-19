@@ -1,17 +1,19 @@
-const DOT_RADIUS = 6
-const DOT_DIAMETER = DOT_RADIUS * 2
-const DOT_SPACING = 45
-const GRID_PADDING = DOT_SPACING / 2
-const MOUSE_DISTANCE = 15
+const dotRadius = 6
+const dotDiameter = dotRadius * 2
+const dotSpacing = 45
+const padding = dotSpacing / 2
+const mouseDistance = 15
 
+let turn = 'p1'
 let dotArray = []
 let squaresArray = []
 let linksArray = []
 let origin = null
 let dotCount = 0
-let colours = {p1:'red', p2: 'purple'}
-let turn = 'p1'
-let scores = {
+let color = {
+    p1: 'red', p2: 'purple'
+}
+let score = {
     p1: 0, p2: 0
 }
 const canvas = document.querySelector('canvas')
@@ -43,12 +45,12 @@ function Dot(x, y, radius, gx, gy) {
     }
 
     this.update = function () {
-        if ((mouse.x - this.x < MOUSE_DISTANCE && mouse.x - this.x > -MOUSE_DISTANCE &&
-            mouse.y - this.y < MOUSE_DISTANCE && mouse.y - this.y > -MOUSE_DISTANCE) ||
+        if ((mouse.x - this.x < mouseDistance && mouse.x - this.x > -mouseDistance &&
+            mouse.y - this.y < mouseDistance && mouse.y - this.y > -mouseDistance) ||
             origin === this) {
-            this.radius = DOT_RADIUS * 1.5
+            this.radius = dotRadius * 1.5
         } else {
-            this.radius = DOT_RADIUS
+            this.radius = dotRadius
         }
 
         if (click.x < this.x + this.radius && click.x > this.x - this.radius &&
@@ -159,7 +161,7 @@ const checkForSquare = (link) => {
                 const upperRight = linksArray.find(l => l.start.gy === gy - 1 && l.end.gy === gy && l.start.gx === link.end.gx)
 
                 if (upperLeft && upperTop && upperRight) {
-                    squaresArray.push(new Square(upperTop.start.x, upperTop.start.y, DOT_SPACING, DOT_SPACING, colours[turn]))
+                    squaresArray.push(new Square(upperTop.start.x, upperTop.start.y, dotSpacing, dotSpacing, color[turn]))
                 }
             }
 
@@ -169,7 +171,7 @@ const checkForSquare = (link) => {
                 const lowerRight = linksArray.find(l => l.start.gy === link.end.gy && l.end.gy === link.end.gy + 1 && l.start.gx === link.end.gx)
 
                 if (lowerLeft && lowerBottom && lowerRight) {
-                    squaresArray.push(new Square(lowerLeft.start.x, lowerLeft.start.y, DOT_SPACING, DOT_SPACING, colours[turn]))
+                    squaresArray.push(new Square(lowerLeft.start.x, lowerLeft.start.y, dotSpacing, dotSpacing, color[turn]))
                 }
             }
             break;
@@ -180,7 +182,7 @@ const checkForSquare = (link) => {
                 const leftBottom = linksArray.find(l => l.start.gx === link.end.gx - 1 && l.end.gx === link.end.gx && l.start.gy === link.end.gy)
 
                 if (leftTop && leftLeft && leftBottom) {
-                    squaresArray.push(new Square(leftTop.start.x, leftTop.start.y, DOT_SPACING, DOT_SPACING, colours[turn]))
+                    squaresArray.push(new Square(leftTop.start.x, leftTop.start.y, dotSpacing, dotSpacing, color[turn]))
                 }
             }
 
@@ -190,7 +192,7 @@ const checkForSquare = (link) => {
                 const rightBottom = linksArray.find(l => l.start.gx === link.end.gx && l.end.gx === link.end.gx + 1 && l.start.gy === link.end.gy)
 
                 if (rightTop && rightRight && rightBottom) {
-                    squaresArray.push(new Square(rightTop.start.x, rightTop.start.y, DOT_SPACING, DOT_SPACING, colours[turn]))
+                    squaresArray.push(new Square(rightTop.start.x, rightTop.start.y, dotSpacing, dotSpacing, color[turn]))
                 }
             }
             break
@@ -201,23 +203,24 @@ const drawDots = (dotCount) => {
     for (let i = 0; i < dotCount; i++) {
         for (let j = 0; j < dotCount; j++) {
             dotArray.push(new Dot(
-                i * DOT_SPACING + (GRID_PADDING + DOT_RADIUS),
-                j * DOT_SPACING + (GRID_PADDING + DOT_RADIUS),
-                DOT_RADIUS, i, j)
+                i * dotSpacing + (padding + dotRadius),
+                j * dotSpacing + (padding + dotRadius),
+                dotRadius, i, j)
             )
         }
     }
 }
 
 const showWinner = () => {
-    if (scores.p1 === scores.p2) {
+    if (score.p1 === score.p2) {
         document.querySelector('.info').innerHTML = `Draw!`
     } else {
-        document.querySelector('.info').innerHTML = `Winner is ${scores.p1 > scores.p2 ? 'Player 1' : 'Player 2'}`
+        document.querySelector('.info').innerHTML = `Winner is ${score.p1 > score.p2 ? 'Player 1' : 'Player 2'}`
     }
     document.querySelector('.info').style.display = 'block'
     document.getElementsByClassName('playAgain')[0].style.display = 'block'
     document.querySelector('canvas').style.display = 'none'
+    document.querySelector('#turn').classList.toggle('p2-turn')
 }
 
 const animate = () => {
@@ -255,11 +258,10 @@ window.addEventListener('mousedown', function (e) {
 });
 
 const resetField = () => {
-    scores = {p1: 0, p2: 0}
+    score = {p1: 0, p2: 0}
     document.querySelector(`#p1Score`).innerHTML = '0'
     document.querySelector(`#p2Score`).innerHTML = '0'
     document.querySelector('canvas').style.display = 'block'
-    document.querySelector('#turn').classList.toggle('p2-turn')
     document.querySelector('.info').style.display = 'none'
     document.getElementsByClassName('playAgain')[0].style.display = 'none'
     squaresArray = []
@@ -272,9 +274,9 @@ init()
 function init() {
     dotCount = document.querySelector('#gridSize').value
 
-    const size = GRID_PADDING * 2
-        + ((DOT_RADIUS * 2) * dotCount)
-        + ((DOT_SPACING - DOT_DIAMETER) * (dotCount - 1))
+    const size = padding * 2
+        + ((dotRadius * 2) * dotCount)
+        + ((dotSpacing - dotDiameter) * (dotCount - 1))
 
     canvas.width = size
     canvas.height = size
@@ -290,10 +292,31 @@ function init() {
 }
 
 const updateScores = () => {
-    scores[turn] = scores[turn] + 1
-    document.querySelector(`#${turn}Score`).innerHTML = scores[turn]
+    score[turn] = score[turn] + 1
+    document.querySelector(`#${turn}Score`).innerHTML = score[turn]
 }
 
 document.querySelector('#gridSize').addEventListener('change', function () {
     init()
 })
+
+var tSwitcher = document.getElementById('theme-switcher');
+let element = document.body;
+
+let onpageLoad = localStorage.getItem("theme") || "";
+if (onpageLoad != null && onpageLoad == 'dark-mode') {
+    tSwitcher.checked = true;
+}
+element.classList.add(onpageLoad);
+
+function themeToggle() {
+    if (tSwitcher.checked) {
+        localStorage.setItem('theme', 'dark-theme');
+        element.classList.add('dark-theme');
+        document.querySelector('.controls').classList.add('controls-dark')
+    } else {
+        localStorage.setItem('theme', '');
+        element.classList.remove('dark-theme');
+        document.querySelector('.controls').classList.remove('controls-dark')
+    }
+}

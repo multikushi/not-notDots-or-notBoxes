@@ -3,11 +3,27 @@ body, label, div, span {
   justify-content: center;
   align-items: center;
 }
+html, body {
+	background: #1e5799;
+	background-repeat: no-repeat;
+	overflow: hidden;
+	background: -moz-linear-gradient(top,  #1e5799 0%, #7db9e8 100%);
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#1e5799), color-stop(100%,#7db9e8));
+	background: -webkit-linear-gradient(top,  #1e5799 0%,#7db9e8 100%);
+	background: -o-linear-gradient(top,  #1e5799 0%,#7db9e8 100%);
+	background: -ms-linear-gradient(top,  #1e5799 0%,#7db9e8 100%);
+	background: linear-gradient(to bottom,  #1e5799 0%,#7db9e8 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#1e5799', endColorstr='#7db9e8',GradientType=0 );
+	/* min-height:100%; stava i bez tova */
+}
 
-body {
-  margin: 0;
-  min-height: 100vh;
-  background-color: #222;
+body { 
+  	margin: 0;
+ 	min-height: 100vh;
+}
+
+.dark-theme {
+	background: #191970;
 }
 
 .controls {
@@ -51,6 +67,9 @@ span {
 .player-num {
 	width: 150px;
 	justify-content: flex-start;
+	background-color: #ccc;
+	padding-left: 5%;
+	border-radius: 10%;
 }
 
 .score {
@@ -63,7 +82,7 @@ span {
 }
 
 label {
-	color: #1e5799;
+	color: #fff;
 }
 
 .col1 {
@@ -110,20 +129,76 @@ canvas {
 	5px 4px 1px #CCCCCC, 4px 5px 1px #EEEEEE, 6px 5px 1px #CCCCCC,
 	5px 6px 1px #EEEEEE, 7px 6px 1px #CCCCCC;
 	top: 25%;
+	cursor: pointer;
 }
 
-html, body {
-	background: #1e5799;
-	background-repeat: no-repeat;
+canvas {
+	box-shadow: 0px 10px 122px white;
+}
+
+.player-one {
+	color: red;
+}
+
+.player-two {
+	color: purple;
+}
+
+
+
+
+.toggle-switch {
+	position: absolute;
+ 	top: 8px;
+  	right: 16px;
+}
+input[type="checkbox"]{
+	-webkit-appearance: none;
+	visibility: hidden;
+	display: none;
+}
+
+.slider{
+	position: relative;
+	display: block;
+	width: 60px;
+	height: 34px;
+	background: #063153;
+	cursor: pointer;
+	border-radius: 20px;
 	overflow: hidden;
-	background: -moz-linear-gradient(top,  #1e5799 0%, #7db9e8 100%);
-	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#1e5799), color-stop(100%,#7db9e8));
-	background: -webkit-linear-gradient(top,  #1e5799 0%,#7db9e8 100%);
-	background: -o-linear-gradient(top,  #1e5799 0%,#7db9e8 100%);
-	background: -ms-linear-gradient(top,  #1e5799 0%,#7db9e8 100%);
-	background: linear-gradient(to bottom,  #1e5799 0%,#7db9e8 100%);
-	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#1e5799', endColorstr='#7db9e8',GradientType=0 );
-	min-height:100%;
+	transition: ease-in 0.5s;
+}
+input[type="checkbox"]:checked ~ .slider{
+	background: #fff;
+}
+.slider:before{
+	content: '';
+	position: absolute;
+	top: 4px;
+	left: 4px;
+	background: #fff;
+	width: 26px;
+	height: 26px;
+	border-radius: 50%;
+	transition: 0.5s;
+}
+input[type="checkbox"]:checked ~ .slider:before{
+	transform: translateX(-50px);
+}
+.slider:after{
+	content: '';
+	position: absolute;
+	top: 4px;
+	background: #063153;
+	width: 26px;
+	height: 26px;
+	border-radius: 50%;
+	transition: 0.5s;
+	transform: translateX(50px);
+}
+input[type="checkbox"]:checked ~ .slider:after{
+	transform: translateX(30px);
 }
 
 .snowflakes {
@@ -131,7 +206,9 @@ html, body {
 	position: absolute; top: -90px; left: 0;
 }
 
-i, i:after, i:before { background: white; }
+i, i:after, i:before { 
+	background: white; 
+}
 i {
 	display: inline-block;
 	-webkit-animation: snowflakes 3s linear 2s 20;
@@ -213,16 +290,4 @@ i:before { -webkit-transform: rotate(240deg); }
 	opacity:.9;
 	-webkit-animation-delay: 3.5s;
 	-webkit-animation-timing-function:ease-in;
-}
-
-canvas {
-	box-shadow: 0px 10px 122px white;
-}
-
-.player-one {
-	color: red;
-}
-
-.player-two {
-	color: purple;
 }

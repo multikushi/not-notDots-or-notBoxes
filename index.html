@@ -2,21 +2,30 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>!(!Dots v !Boxes)</title>
+    <title>!(!Dots || !Boxes)</title>
     <link rel="stylesheet" href="style.css">
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"> -->
 </head>
 <body>
 <div class="snowflakes">
-    <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i>
-</i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i>
-</i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i>
-</i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i>
-</i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i>
-</i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i>
-</i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i>
-</i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i>
-</i><i></i><i></i><i></i><i></i>
+    <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+    <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+    <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+    <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+    <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+    <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+    <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+    <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+    <i></i><i></i><i></i><i></i> 
 </div>
+
+<div class="toggle-switch">
+    <label>
+        <input onclick="themeToggle()" type="checkbox" id="theme-switcher">
+        <span class="slider"></span>
+    </label>
+</div>
+
 <div class="controls">
     <label>Grid Size
         <input type="range" min="3" max="15" value="4" id="gridSize"/>
