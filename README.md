@@ -1,4 +1,4 @@
-# not-notDots-or-notBoxes
+# !(!Dots || !Boxes)
 Hackathon victims
 
 Open the index.html file in the main directory, not in the folder.
