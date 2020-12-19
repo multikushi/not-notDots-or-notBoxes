@@ -10,10 +10,6 @@ body {
   background-color: #222;
 }
 
-@font-face {
-	font-family: Dense;
-}
-
 .controls {
 	flex-direction: column;
 	justify-content: flex-start;
@@ -45,12 +41,15 @@ label input {
 }
 
 .player span {
+	font-size: 40px;
+}
+
+span {
 	color: #ffc;
-	font: 30px Dense;
 }
 
 .player-num {
-	width: 59px;
+	width: 150px;
 	justify-content: flex-start;
 }
 
@@ -61,6 +60,10 @@ label input {
 
 .player input {
 	border: 0;
+}
+
+label {
+	color: #1e5799;
 }
 
 .col1 {
@@ -97,7 +100,129 @@ canvas {
 
 .playAgain {
 	position: absolute;
+	border-radius: 10px;
 	font-size: 40px;
 	color: red;
+	padding: 10px;
+	text-shadow: 1px 0px 1px #CCCCCC, 0px 1px 1px #EEEEEE,
+	2px 1px 1px #CCCCCC, 1px 2px 1px #EEEEEE, 3px 2px 1px #CCCCCC,
+	2px 3px 1px #EEEEEE, 4px 3px 1px #CCCCCC, 3px 4px 1px #EEEEEE,
+	5px 4px 1px #CCCCCC, 4px 5px 1px #EEEEEE, 6px 5px 1px #CCCCCC,
+	5px 6px 1px #EEEEEE, 7px 6px 1px #CCCCCC;
 	top: 25%;
+}
+
+html, body {
+	background: #1e5799;
+	background-repeat: no-repeat;
+	overflow: hidden;
+	background: -moz-linear-gradient(top,  #1e5799 0%, #7db9e8 100%);
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#1e5799), color-stop(100%,#7db9e8));
+	background: -webkit-linear-gradient(top,  #1e5799 0%,#7db9e8 100%);
+	background: -o-linear-gradient(top,  #1e5799 0%,#7db9e8 100%);
+	background: -ms-linear-gradient(top,  #1e5799 0%,#7db9e8 100%);
+	background: linear-gradient(to bottom,  #1e5799 0%,#7db9e8 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#1e5799', endColorstr='#7db9e8',GradientType=0 );
+	min-height:100%;
+}
+
+.snowflakes {
+	width: 100%; height: 100px;
+	position: absolute; top: -90px; left: 0;
+}
+
+i, i:after, i:before { background: white; }
+i {
+	display: inline-block;
+	-webkit-animation: snowflakes 3s linear 2s 20;
+	-moz-animation: snowflakes 3s linear 2s 20;
+	position: relative;
+}
+i:after, i:before {
+	height: 100%;
+	width: 100%;
+	content: ".";
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	-webkit-transform: rotate(120deg);
+}
+i:before { -webkit-transform: rotate(240deg); }
+
+@-webkit-keyframes snowflakes {
+	0% {
+		-webkit-transform: translate3d(0,0,0) rotate(0deg) scale(0.6);
+	}
+	100% {
+		-webkit-transform: translate3d(15px, 1200px, 0px) rotate(360deg) scale(0.6);
+	}
+}
+
+.snowflakes i:nth-child(3n) {
+	width: 16px; height: 4px;
+	-webkit-animation-duration: 4s;
+	-webkit-animation-iteration-count: 30;
+	-webkit-transform-origin: right -45px;
+}
+
+.snowflakes i:nth-child(3n+1) {
+	width: 24px; height: 6px;
+	-webkit-animation-duration: 6s;
+	-webkit-animation-iteration-count: 45;
+	-webkit-transform-origin: right -30px;
+}
+
+.snowflakes i:nth-child(3n+2) {
+	width: 32px; height: 8px;
+	-webkit-animation-duration: 8s;
+	-webkit-animation-iteration-count: 60;
+	-webkit-transform-origin: right -15px;
+}
+
+.snowflakes i:nth-child(7n) {
+	opacity:.3;
+	-webkit-animation-delay: 0s;
+	-webkit-animation-timing-function:ease-in;
+}
+.snowflakes i:nth-child(7n+1) {
+	opacity:.4;
+	-webkit-animation-delay: 1s;
+	-webkit-animation-timing-function:ease-out;
+}
+.snowflakes i:nth-child(7n+2) {
+	opacity:.5;
+	-webkit-animation-delay: 1.5s;
+	-webkit-animation-timing-function:linear;
+}
+.snowflakes i:nth-child(7n+3) {
+	opacity:.6;
+	-webkit-animation-delay: 2s;
+	-webkit-animation-timing-function:ease-in;
+}
+.snowflakes i:nth-child(7n+4) {
+	opacity:.7;
+	-webkit-animation-delay: 2.5s;
+	-webkit-animation-timing-function:linear;
+}
+.snowflakes i:nth-child(7n+5) {
+	opacity:.8;
+	-webkit-animation-delay: 3s;
+	-webkit-animation-timing-function:ease-out;
+}
+.snowflakes i:nth-child(7n+6) {
+	opacity:.9;
+	-webkit-animation-delay: 3.5s;
+	-webkit-animation-timing-function:ease-in;
+}
+
+canvas {
+	box-shadow: 0px 10px 122px white;
+}
+
+.player-one {
+	color: red;
+}
+
+.player-two {
+	color: purple;
 }

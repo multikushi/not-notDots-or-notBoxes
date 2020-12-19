@@ -9,7 +9,7 @@ let squaresArray = []
 let linksArray = []
 let origin = null
 let dotCount = 0
-let colours = {p1: null, p2: null}
+let colours = {p1:'red', p2: 'purple'}
 let turn = 'p1'
 let scores = {
     p1: 0, p2: 0
@@ -271,8 +271,6 @@ init()
 
 function init() {
     dotCount = document.querySelector('#gridSize').value
-    colours.p1 = document.querySelector('#p1Colour').value
-    colours.p2 = document.querySelector('#p2Colour').value
 
     const size = GRID_PADDING * 2
         + ((DOT_RADIUS * 2) * dotCount)
@@ -291,16 +289,6 @@ function init() {
     }
 }
 
-const changeSquareColour = (e, player) => {
-    const oldColour = colours[`p${player}`]
-    const newColour = e.target.value
-
-    let playerSquares = squaresArray.filter(square => square.colour === oldColour)
-    playerSquares.forEach(square => square.colour = newColour)
-
-    colours[`p${player}`] = newColour
-}
-
 const updateScores = () => {
     scores[turn] = scores[turn] + 1
     document.querySelector(`#${turn}Score`).innerHTML = scores[turn]
@@ -308,12 +296,4 @@ const updateScores = () => {
 
 document.querySelector('#gridSize').addEventListener('change', function () {
     init()
-})
-
-document.querySelector('#p1Colour').addEventListener('change', function (e) {
-    changeSquareColour(e, 1)
-})
-
-document.querySelector('#p2Colour').addEventListener('change', function (e) {
-    changeSquareColour(e, 2)
 })
