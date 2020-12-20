@@ -300,23 +300,23 @@ document.querySelector('#gridSize').addEventListener('change', function () {
     init()
 })
 
-var tSwitcher = document.getElementById('theme-switcher');
+let tSwitcher = document.getElementById('theme-switcher')
 let element = document.body;
-
-let onpageLoad = localStorage.getItem("theme") || "";
-if (onpageLoad != null && onpageLoad == 'dark-mode') {
-    tSwitcher.checked = true;
+let onpageLoad;
+if(localStorage.getItem("theme")){
+    onpageLoad = localStorage.getItem("theme")
 }
-element.classList.add(onpageLoad);
+if (onpageLoad != null && onpageLoad == 'dark-mode') {
+    tSwitcher.checked = true
+}
+element.classList.add(onpageLoad)
 
 function themeToggle() {
     if (tSwitcher.checked) {
-        localStorage.setItem('theme', 'dark-theme');
-        element.classList.add('dark-theme');
-        document.querySelector('.controls').classList.add('controls-dark')
+        localStorage.setItem('theme', 'dark-theme')
+        element.classList.add('dark-theme')
     } else {
-        localStorage.setItem('theme', '');
-        element.classList.remove('dark-theme');
-        document.querySelector('.controls').classList.remove('controls-dark')
+        localStorage.setItem('theme', '')
+        element.classList.remove('dark-theme')
     }
 }
